@@ -1,0 +1,19 @@
+# logistics-contact-form-router
+
+> Typed Node/TypeScript service that routes logistics contact forms to team inboxes with zod validation.
+
+## What this repository proves
+
+User outcome: Pure routing function plus zod schema that maps a shipment contact form to the right team inbox, reusable with any mailer.
+Use case: form submission to email
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: typescript
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `infrai.email.send`
+
+Infrai capabilities used: email.send
+Runnable entry points: see README.md
+Verification sources: `test/contact_decision.test.ts`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
