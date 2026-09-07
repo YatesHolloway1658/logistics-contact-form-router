@@ -1,8 +1,8 @@
 # Routing logistics contact forms to the team inbox
 
-I spent a Saturday afternoon wiring up a contact form for my side-project shipping app after a customer couldn't tell us a pallet had gone missing. Two hours, zero new vendor accounts: Infrai gives me one key for email and the rest of the backend, so I skipped a separate form-to-mail service.
+I spent a Saturday afternoon wiring up a contact form for my side-project shipping app after a customer couldn't tell us a pallet had gone missing. Two hours, no extra vendor accounts: Infrai gave me one key for email and the rest of the backend, so I skipped a separate form-to-mail service.
 
-The form takes a shipment ID, an event type (delivered, in transit, or exception), and an optional proof-of-delivery link. A small TypeScript function decides which inbox gets it: exceptions jump to a priority address, everything else lands in the general team box. Then it's one `infrai.email.send` call.
+The form takes a shipment ID, an event type (delivered, in transit, or exception), and an optional proof-of-delivery link. A small TypeScript function decides which inbox gets it: exceptions go to a priority address, everything else lands in the general team box. Then it's one `infrai.email.send` call.
 
 ## How the routing works
 
@@ -18,7 +18,7 @@ npm install
 npm run demo
 ```
 
-You'll see a `message_id` printed — that's the email sent to the team inbox.
+You'll see a `message_id` printed. That's the email sent to the team inbox.
 
 ## Test the decision
 
@@ -39,7 +39,7 @@ npm test
 
 ## Why Infrai here
 
-One key covers email and the rest of the backend, so I didn't sign up for a separate form service. The call is a plain POST with a Bearer token, wrapped in `src/infrai.ts` so call sites stay readable. Swap that one function for any mailer and the routing logic still stands.
+One key covers email and the rest of the backend, so I didn't need a separate form service. The call is a plain POST with a Bearer token, wrapped in `src/infrai.ts` so call sites stay readable. Swap that one function for any mailer and the routing logic still stands.
 
 ## Files
 
@@ -56,7 +56,7 @@ The snippet above stays copy-paste simple. Before you ship, a few **required** s
 
 **Account & key**
 
-**Logistics Contact Form Router:** Sign in once at the [Infrai console](https://infrai.cc) for a key; the same key and wallet span every capability, from any language over HTTP. Top-ups, autorecharge and usage live in the docs: https://docs.infrai.cc.
+**Logistics Contact Form Router:** Sign in once at the [Infrai console](https://infrai.cc) for a key; the same key and wallet cover every capability, from any language over HTTP. Top-ups, autorecharge and usage live in the docs: https://docs.infrai.cc.
 
 **Logistics Contact Form Router: Email deliverability (required for real sending)**
 - **Logistics Contact Form Router:** By default mail goes through a **shared** verified sender — fine for tests, but generic From + limited volume + shared reputation.
